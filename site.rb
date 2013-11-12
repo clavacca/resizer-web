@@ -27,7 +27,7 @@ class Site < Hardwired::Bootstrap
         parts = w.split(/\-/)
 
         tags = []
-        while parts.last =~ /^[a-z]+$/ && parts.last != "v" do 
+        while parts.last =~ /^[a-z]+$/ && parts.last != "v" do
           tags << parts.pop
         end
         w = parts * "-"
@@ -35,14 +35,14 @@ class Site < Hardwired::Bootstrap
         vert = parts.last == "v"
         parts.pop if vert
 
-        ix = parts.pop; 
+        ix = parts.pop;
         tld = parts.last =~ /^(dk|com|ru|no|nl|org|pl|eu|se|ie|io|hr|it|uk|nz|au)$/ ? parts.pop : ""
-        tld = "#{parts.pop}.#{tld}" if parts.last =~ /^(ac|co|com)$/; 
+        tld = "#{parts.pop}.#{tld}" if parts.last =~ /^(ac|co|com)$/;
 
         domain = (parts * "-") + "." + tld
 
         Hardwired::RecursiveOpenStruct.new({domain: domain, vertical:vert, tags: tags, index: ix, url: "http://z.zr.io/rw/showcase/#{w}.png"})
-      end 
+      end
     end
 
     before do
@@ -66,14 +66,19 @@ class Site < Hardwired::Bootstrap
       "google-site-verification: google#{code}.html" if config.google_verify.include?(code)
     end
 
-    after '*' do 
+    get "/:exp" do |exp|
+      request[:exp] = exp
+      render_file('/')
+    end
+
+    after '*' do
       cache_for(dev? ? 30 : 60 * 60 * 24) #1 day
-    end  
+    end
 
     Hardwired::Index.add_common_file('atom.xml.slim','atom.xml')
     add_alias('/rss.xml','atom.xml')
     add_alias('articles.xml','atom.xml')
-    
+
     Hardwired::Index.add_common_file('sitemap.xml.slim','sitemap.xml')
 
 
@@ -86,7 +91,7 @@ class Site < Hardwired::Bootstrap
       def releases
         @@releases ||= Hardwired::Index.posts_tagged(:releases)
       end
-      
+
       def bundles
         Hardwired::Index.enum_files { |p| p.flag?(:bundle)}
       end
@@ -97,7 +102,7 @@ class Site < Hardwired::Bootstrap
 
       def optimize_js(options, &block)
         Hardwired::JsOptimize.filter_includes(options,block.call)
-      end 
+      end
 
 
       def store_hyperlinks_in(hash, varname, &block)
@@ -106,7 +111,7 @@ class Site < Hardwired::Bootstrap
         list = []
         dom.css('a').each do |a|
           list << a['href']
-        end 
+        end
         hash[varname] = list.uniq.reject { |v| v.nil? || v.empty? }
         block.call
       end
@@ -114,7 +119,7 @@ class Site < Hardwired::Bootstrap
       def nullify (&block)
         block.call
         ""
-      end 
+      end
 
     end
 
@@ -122,7 +127,7 @@ class Site < Hardwired::Bootstrap
     get '/alljs/:scripts' do |scripts|
       scripts = scripts.split(',').map{|s| Base64.urlsafe_decode64(s)}
 
- 
+
 
       compressor = defined?(YUI) && defined?(YUI::JavaScriptCompressor) && YUI::JavaScriptCompressor.new(:munge => false)
 
@@ -144,7 +149,7 @@ class Site < Hardwired::Bootstrap
       last_modified Time.new(request["m"])
       cache_for 60 * 60 * 24 * 30 #1 month
       combined
-    end 
+    end
 end
 
 module Hardwired
@@ -161,9 +166,9 @@ module Hardwired
         url = i["src"]
         next if url.nil? || url.start_with?("http") || url.start_with?("//")
         try_urls = [url.sub(/(?<!min)\.js\Z/i,".min.js"),url.sub(/(?<!min)\.js\Z/i,"-min.js"), url]
-        mod_date = nil 
+        mod_date = nil
         try_urls.each do |u|
-          begin 
+          begin
             mod_date = File.mtime(Hardwired::Paths.content_path(u))
             url = u
             p url
@@ -173,12 +178,12 @@ module Hardwired
             next
           end
         end
-        next if mod_date == nil 
+        next if mod_date == nil
 
         mod_dates << mod_date
         scripts << url
         i.remove
-      end 
+      end
 
       avg_mod_date = mod_dates.map{|d| d.to_f}.reduce(:+).to_f / mod_dates.size
 
@@ -194,11 +199,11 @@ module Hardwired
       result
 
 
-    end 
+    end
 
 
   end
-end 
+end
 
 module Hardwired
   class Template
@@ -209,7 +214,7 @@ module Hardwired
     def bundle_name
       meta.bundle
     end
-       
+
     def bundle
       Hardwired::Index["/plugins/bundles/#{meta.bundle}"]
     end
