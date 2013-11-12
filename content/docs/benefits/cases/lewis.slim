@@ -1,0 +1,80 @@
+Libs: -comments
+/ Flags: hidden
+
+
+
+h1 Lewis
+
+== content_for :banner do
+
+  .container
+    .slider
+      #flex1.flexslider
+        ul.slides
+          li
+            img src="http://z.zr.io/rw/clients/lewis-1.jpg?width=1170"
+            .slide-caption.n.hidden-phone
+              h3 James Cleary, Developer, LEWIS Creative Consultants
+              p ImageResizer has proven to be an extremely valuable tool in our studio. It&rsquo;s easy to install, works like a charm, and helps us to deliver quality products to our clients. A must-have for all web developers.
+          li
+            img src="http://z.zr.io/rw/clients/lewis-2.jpg?width=1170"
+            .slide-caption.n.hidden-phone
+              h3 James Cleary, Developer, LEWIS Creative Consultants
+              p ImageResizer has proven to be an extremely valuable tool in our studio. It&rsquo;s easy to install, works like a charm, and helps us to deliver quality products to our clients. A must-have for all web developers.
+        ul.flex-direction-nav
+          li: a.flex-prev href="#" Previous
+          li: a.flex-next href="#" Next
+    .whatisir
+      h1
+        img src="http://z.zr.io/rw/clients/lewis-logo.jpg"
+      p
+        | At the forefront of design and innovation.
+  hr
+markdown:
+
+  ### What we do at LEWIS Creative Consultants
+
+  We provide creative, strategic solutions in digital communications, advertising and traditional print design for a wide range of clients across the UK. At LEWIS we take the long view, seeing beyond the obvious trends and applying our intelligence and expertise to create lasting results for our clients and always go the extra mile to ensure our clients are seen in the best possible light. We've been in the design business since 1973 and have grown and adapted to dramatic changes across the industry ever since. We continue to evolve and keep pace with new innovations, whilst keeping an eye firmly fixed on future possibilities.
+
+  ## Why we like ImageResizer
+
+  > ImageResizer has proven to be an extremely valuable tool in our studio. It&rsquo;s easy to install, works like a charm, and helps us to deliver quality products to our clients. A must-have for all web developers.
+
+  > -- James Cleary, Developer, LEWIS Creative Consultants
+
+
+== content_for :next_row do
+
+  - quotes = [ {quote:"ImageResizer has proven to be an extremely valuable tool in our studio. It&rsquo;s easy to install, works like a charm, and helps us to deliver quality products to our clients. A must-have for all web developers.",
+                author:"James Cleary, Developer, LEWIS Creative Consultants",
+                domain:"http://www.lewis.co.uk/"},
+              ]
+
+
+  - testimonials = Hash[*quotes.collect{|v| [v[:domain],v]}.flatten]
+
+  - websites = ["caterallen-co-uk-1", "hunter-boot-com-1", "lawatwork-co-uk-1"].map { |w| d = parse_domain(w); d.quote = testimonials.delete(d.domain); d }
+  h2 Some sites we've built with ImageResizer
+
+
+  #portfolio-wrapper.row
+    - websites.each do |w|
+      - unless w.quote.nil?
+        .span4.portfolio-item class="#{w.tags.empty? ? "un" : w.tags * " "}"
+          .quotes
+            .quote
+              =w.quote.quote
+            .author
+              =w.quote.author
+      .span4.portfolio-item class="#{w.tags.empty? ? "un" : w.tags * " "}"
+        .picture
+          a rel="image" href="#{w.url}?width=800" title="#{w.domain}"
+            img src="#{w.url}?width=362&format=jpg&quality=90" alt="#{w.domain}"
+            .image-overlay-zoom
+          .item-description.alt
+            h5
+              a href="http://#{w.domain}"
+                =w.domain
+            p
+              = "Photo ##{w.index} from #{w.domain}  #{w.tags.nil? ? "" : w.tags * ", "}"
+          .post-meta
