@@ -1,0 +1,117 @@
+Flags: hidden
+
+h1 ImageResizer Quick Start Guide
+
+h2 Up and Running with ImageResizer in 3 Minutes or Less
+
+h2 Step 1: Install ImageResizer
+h3
+| NuGet GUI (Visual Studio) or
+a data-toggle="modal" href="#pmModal" role="button" Package Manager Console
+ol
+  li Right-click on your project and click "Manage NuGet Packages".
+  li Select "NuGet Offical Package Source"
+  li Search for "Imazen", using the search bar at the top right
+  li Select "ImageResizer Web.config Installation (with MVC support)" and choose Install
+  li Repeat for each desired plugin
+  | (
+  a data-toggle="modal" href="#plugsModal" role="button" some suggestions
+  | )
+
+h3 Step 2: Configuration
+p Modify or create the /Web.Config file for your site. Make sure all these elements are added correctly (You may wish to make a backup of Web.config first).
+pre
+  | &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+    &lt;configuration&gt;
+      &lt;configSections&gt;
+        &lt;section name=&quot;resizer&quot; type=&quot;ImageResizer.ResizerSection,ImageResizer&quot;  requirePermission=&quot;false&quot;  /&gt;
+      &lt;/configSections&gt;
+
+      &lt;resizer&gt;
+        &lt;!-- Unless you (a) use Integrated mode, or (b) map all reqeusts to ASP.NET, 
+             you&#039;ll need to add .ashx to your image URLs: image.jpg.ashx?width=200&amp;height=20 --&gt;
+        &lt;pipeline fakeExtensions=&quot;.ashx&quot; /&gt;
+
+        &lt;plugins&gt;
+          &lt;add name=&quot;MvcRoutingShim&quot; /&gt;
+          &lt;add name=&quot;DiskCache&quot; /&gt;
+          &lt;!-- &lt;add name=&quot;PrettyGifs&quot; /&gt; --&gt;
+          &lt;!-- &lt;add name=&quot;SimpleFilters&quot; /&gt; --&gt;
+          &lt;!-- &lt;add name=&quot;S3Reader&quot; /&gt; --&gt;
+        &lt;/plugins&gt;  
+      &lt;/resizer&gt;
+
+      &lt;system.web&gt;
+        &lt;httpModules&gt;
+          &lt;!-- This is for IIS5, IIS6, and IIS7 Classic, and Cassini/VS Web Server--&gt;
+          &lt;add name=&quot;ImageResizingModule&quot; type=&quot;ImageResizer.InterceptModule&quot;/&gt;
+        &lt;/httpModules&gt;
+      &lt;/system.web&gt;
+
+      &lt;system.webServer&gt;
+        &lt;validation validateIntegratedModeConfiguration=&quot;false&quot;/&gt;
+        &lt;modules&gt;
+          &lt;!-- This is for IIS7+ Integrated mode --&gt;
+          &lt;add name=&quot;ImageResizingModule&quot; type=&quot;ImageResizer.InterceptModule&quot;/&gt;
+        &lt;/modules&gt;
+      &lt;/system.webServer&gt;
+    &lt;/configuration&gt;
+
+h3 Step 3: Test Configuration
+markdown:
+  Start your web site, then visit [/resizer.debug.ashx](/plugins/diagnostics) to verify you've done everything correctly. If you ever encounter issues, simply revisit that page to access the self-diagnostics. If you need help, [just ask](/support)!
+
+h3 Step 4: Basic Commands
+markdown:
+  constrain to
+
+  `?width=100`
+
+  `?height=100`
+
+  resize exactly to
+
+  `?w=100&h=100&mode=pad(default)|max|crop|stretch|carve(requires SeamCarving plugin)`
+
+  `&anchor=topleft|topcenter|topright|middleleft|middlecenter|middleright|bottomleft|bottomcenter|bottomright`
+
+  `&scale=down|both|canvas`
+
+  `&format=jpg|gif|png`
+
+  compression abount for jpeg
+
+  `&quality=0..100`
+
+/ h3 Next Steps
+
+/ p Now that you have installed and tested your ImageResizer installation, whats next? Below are some additional resources that can help you expand your ImageResizer knowledge and functionality.
+
+
+#pmModal.modal.hide.fade aria-hidden="true" aria-labelledby="pmModalLabel" role="dialog" tabindex="-1"
+  .modal-header
+    button.close aria-hidden="true" data-dismiss="modal" type="button"
+    h3#pmModalLabel Package Manager Console
+  .modal-body
+    p The Package Manage Console can be opened in Visual Studio through `Tools`>`Library Package Manager`>`Package Manager Console`
+    pre: code
+      | PM> Install-Package ImageResizer.MvcWebConfig
+        PM> Install-Package ImageResizer.Plugins.DiskCache
+        PM> Install-Package ImageResizer.Plugins.PrettyGifs
+        PM> Install-Package ImageResizer.Plugins.SimpleFilters
+  .modal-footer
+    button.btn aria-hidden="true" data-dismiss="modal" Close
+    / button.btn.btn-primary Save changes
+
+
+#plugsModal.modal.hide.fade aria-hidden="true" aria-labelledby="plugsModalLabel" role="dialog" tabindex="-1"
+  .modal-header
+    button.close aria-hidden="true" data-dismiss="modal" type="button"
+    h3#plugsModalLabel Plugin Installation Suggestions
+  .modal-body
+    p ImageResizer.Plugins.DiskCache
+    p ImageResizer.Plugins.PrettyGifs
+    p ImageResizer.Plugins.SimpleFilters
+  .modal-footer
+    button.btn aria-hidden="true" data-dismiss="modal" Close
+    / button.btn.btn-primary Save changes
