@@ -66,11 +66,6 @@ class Site < Hardwired::Bootstrap
       "google-site-verification: google#{code}.html" if config.google_verify.include?(code)
     end
 
-    get "/:exp" do |exp|
-      request[:exp] = exp
-      render_file('/')
-    end
-
     after '*' do
       cache_for(dev? ? 30 : 60 * 60 * 24) #1 day
     end
