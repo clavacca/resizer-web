@@ -1,6 +1,7 @@
 Menu: home
 Title: ASP.NET Image Resizing, Cropping, & Upload Module for IIS - Free & Open Source - MVC compatible
 Libs: uservoice, plusone, -comments, bxSlider
+Description: "Resize, crop, rotate, watermark, and modify images server-side. With over 8 years dynamic image resizing experience we have created best of class product for the .NET community."
 Aliases: )
 Layout: layout
 
@@ -12,7 +13,6 @@ h1 RESTful Image Processing IIS/ASP .NET Module
 
 - unless ['01','02'].include? exp
   == content_for :banner do
-
     .container.hidden-phone
       .slider
         #flex1.flexslider
@@ -123,7 +123,6 @@ h1 RESTful Image Processing IIS/ASP .NET Module
                   i.icon-arrow-right
                   img src="http://z.zr.io/ri/1s.jpg?crop=18,26,60,70&cropxunits=100&cropyunits=100&width=#{w[1]}"
                   p Crop by percent, pixels, or resolution-independent units.
-
                 .span4
                   - w = widths(1.5,1,1)
                   h4 Auto-remove whitespace
@@ -132,9 +131,7 @@ h1 RESTful Image Processing IIS/ASP .NET Module
                   img src="http://z.zr.io/ri/18s.jpg?width=#{w[1]}&trim.threshold=33&trim.percentpadding=5"
                   i.icon-arrow-right
                   img src="http://z.zr.io/ri/18s.jpg?width=#{w[2]}&trim.threshold=80&trim.percentpadding=5"
-
                   p Product photos are painless with energy-based whitespace removal.
-
                 .span4
                   - w = widths(1.3,1,1)
                   h4 Face detection & auto-crop
@@ -187,43 +184,38 @@ h1 RESTful Image Processing IIS/ASP .NET Module
                   i.icon-arrow-right
                   img src="http://z.zr.io/ri/15tiny.jpg?width=#{w[2]}&height=#{w[2]}&scale=both&bgcolor=ddd&fi.scale=lanczos"
                   p Upscale only when you want to, the way you want to, with the upscale filter you want.
-
           ul.flex-direction-nav
             li: a.flex-prev href="#" Previous
             li: a.flex-next href="#" Next
+    / .container
+    /   .slider-wrapper.home-slider
+    /     #da-slider.da-slider
+    /       .da-slide.textual
+    /         h2 Blissfully compatible
+    /         p
+    /           | Drop-in compatible with your existing website, CMS, servers, and dev tools. Accessible, stack-agnostic API.
+    /       .da-slide.textual
+    /         h2 Gratifying agility
+    /         p
+    /           | Tweak size, cropping, and encoding in-page. Escape the endless edit-export-upload cycle!
+    /           |  Conveniently mobile and retina-friendly.
+    /       .da-slide.textual
+    /         h2 Comprehensive and capable
+    /         p
+    /           | ImageResizer offers facial detection, red-eye correction, RAW file development, seam carving, and object removal.
+    /           | World-class resizing is just the tip of the iceberg.
+    /       .da-slide.textual
+    /         h2 Conveniently intuitive
+    /         p
+    /           | No reference manual needed; add commands to the end of your image URL. Order and casing doesn't matter, and every combination of commands 'just works'.
+    /       .da-slide.textual
+    /         h2 Extreme scalability
+    /         p
+    /           | A single server running ImageResizer Performance Edition can efficiently cache and serve up to a million unique images. Many of our clients use it with up to 10 million, but at that point we suggest a CDN, Varnish, or Nginx cache.
+    /       .da-slide.textual
+    /         h2 Enlighteningly open
+    /         p Everything we offer includes source code, and you're welcome to edit it. We reward pull requests and encourage community plugin development.
 
-
-    .container
-      .slider-wrapper.home-slider
-        #da-slider.da-slider
-
-          .da-slide.textual
-            h2 Blissfully compatible
-            p
-              | Drop-in compatible with your existing website, CMS, servers, and dev tools. Accessible, stack-agnostic API.
-          .da-slide.textual
-            h2 Gratifying agility
-            p
-              | Tweak size, cropping, and encoding in-page. Escape the endless edit-export-upload cycle!
-              |  Conveniently mobile and retina-friendly.
-          .da-slide.textual
-            h2 Comprehensive and capable
-            p
-              | ImageResizer offers facial detection, red-eye correction, RAW file development, seam carving, and object removal.
-              | World-class resizing is just the tip of the iceberg.
-
-          .da-slide.textual
-            h2 Conveniently intuitive
-            p
-              | No reference manual needed; add commands to the end of your image URL. Order and casing doesn't matter, and every combination of commands 'just works'.
-          .da-slide.textual
-            h2 Extreme scalability
-            p
-              | A single server running ImageResizer Performance Edition can efficiently cache and serve up to a million unique images. Many of our clients use it with up to 10 million, but at that point we suggest a CDN, Varnish, or Nginx cache.
-
-          .da-slide.textual
-            h2 Enlighteningly open
-            p Everything we offer includes source code, and you're welcome to edit it. We reward pull requests and encourage community plugin development.
 
 .whatisir
   / example ab test
@@ -239,12 +231,12 @@ h1 RESTful Image Processing IIS/ASP .NET Module
         p Be up and running in less than 3-minutes...
         br
         br
-        a.btn.btn-primary.btn-large.btn-block href="download" Download ImageResizer &raquo;
+        a.btn.btn-primary.btn-large.btn-block href="download" Download ImageResizer v3.4.1 &raquo;
         br
         br
         br
   - when '02'
-    h1 Resize, crop, rotate, watermark, and modify images server side
+    h1 Resize, crop, rotate, watermark, and modify images server-side
     p
       | ImageResizer provides a comprehensive set of photography tools, from powerfully simple one-command adjustments, such as white balance correction and noise removal, to cutting-edge advanced controls, such as red-eye correction, object removal, and seam carving. Have your server deliver final images to the browser in milliseconds.
     .row
@@ -516,3 +508,26 @@ p: a href="/docs/benefits/testimonials" Read more testimonials
 
 
 
+
+
+/ modal for thank you
+#thankyouModal.modal.hide.fade aria-hidden="true" aria-labelledby="thankyouModalLabel" role="dialog" tabindex="-1"
+  .modal-header
+    button.close aria-hidden="true" data-dismiss="modal" type="button"
+    h3#thankyouModalLabel Thank You for Downloading ImageResizer
+  .modal-body
+    p
+      a.btn.btn-success href="docs/quick-start" Quick Start Guide
+      | &nbsp; up and running in 3-minutes or less
+    p
+      a.btn href="docs/basics" Basic Commands
+      | &nbsp; learn the basics of the URL API
+    p
+      a.btn href="docs/install" Detailed Installation Guides
+      | &nbsp; chose the installation method that is best for you
+    p
+      a.btn href="docs/best-practices" Best Practices
+      | &nbsp; learn from our years of experience
+  .modal-footer
+    button.btn aria-hidden="true" data-dismiss="modal" Close
+    / button.btn.btn-primary Save changes

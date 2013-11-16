@@ -8,7 +8,7 @@ jQuery(document).ready(function($){
 		window.open( $(this).attr("data-href") );
 		window.focus();
 	});
-	$("#signupform").submit( function(e) {
+	$("#signupform, #homesignup").submit( function(e) {
 		$('#thankyouModal').modal('show');
 	});
 
