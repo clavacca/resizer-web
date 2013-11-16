@@ -1,7 +1,17 @@
 /* ------------------- Flex Slider --------------------- */
 
 jQuery(document).ready(function($){
-	
+	// pop modal on download link
+	$(".download-link").click( function(e) {
+		e.preventDefault();
+		$('#thankyouModal').modal('show')
+		window.open( $(this).attr("data-href") );
+		window.focus();
+	});
+	$("#signupform").submit( function(e) {
+		$('#thankyouModal').modal('show');
+	});
+
 	$('#flex1').flexslider();
 
 
@@ -9,7 +19,7 @@ jQuery(document).ready(function($){
 	 	animation: "slide",
 	   	controlNav: "thumbnails"
 	});
-	
+
 	$('.clients-carousel').flexslider({
 	    animation: "slide",
 			easing: "swing",
@@ -20,8 +30,8 @@ jQuery(document).ready(function($){
 			directionNav: false,
 			move: 2
      });
-	
-	$('.testimonials-carousel').carousel({ 
+
+	$('.testimonials-carousel').carousel({
 			namespace: "mr-rotato" // Defaults to “carousel”.
 	})
 
@@ -30,7 +40,7 @@ jQuery(document).ready(function($){
 
 
 jQuery(document).ready(function($){
-	
+
 	/* ------------------- Fancybox --------------------- */
 
 	(function() {
@@ -62,17 +72,17 @@ jQuery(document).ready(function($){
 
 
 	})();
-	
-	
+
+
 	/* ------------------ Back To Top ------------------- */
 
 	jQuery('#footer-menu-back-to-top a').click(function(){
-		jQuery('html, body').animate({scrollTop:0}, 300); 
-		return false; 
+		jQuery('html, body').animate({scrollTop:0}, 300);
+		return false;
 	});
-	
 
-	/* --------------------- Tabs ------------------------ */	
+
+	/* --------------------- Tabs ------------------------ */
 
 		(function() {
 
@@ -102,8 +112,8 @@ jQuery(document).ready(function($){
 			});
 
 		})();
-		
-			
+
+
 });
 
 /* ------------------ Tooltips ----------------- */
@@ -116,10 +126,10 @@ jQuery(document).ready(function() {
 
 });
 
-/* ------------------ Progress Bar ------------------- */	
+/* ------------------ Progress Bar ------------------- */
 
 jQuery(document).ready(function($){
-	
+
 	$(".meter > span").each(function() {
 		$(this)
 		.data("origWidth", $(this).width())
@@ -133,10 +143,10 @@ jQuery(document).ready(function($){
 /* ------------------- Parallax --------------------- */
 
 jQuery(document).ready(function($){
-	
+
 	$('#da-slider').cslider({
 		autoplay	: true,
-		bgincrement	: 14.285, 
+		bgincrement	: 14.285,
 		interval: 5000
 	});
 
@@ -145,21 +155,21 @@ jQuery(document).ready(function($){
 /* ------------------ Image Overlay ----------------- */
 
 jQuery(document).ready(function($) {
-	
+
 	$('.picture a').hover(function () {
 		$(this).find('.image-overlay-zoom, .image-overlay-link').stop().fadeTo('fast', 1);
 	},function () {
 		$(this).find('.image-overlay-zoom, .image-overlay-link').stop().fadeTo('fast', 0);
 	});
-	
+
 });
 
 /* -------------------- Isotope --------------------- */
 
 jQuery(document).ready(function($) {
-	
+
 	$('#portfolio-wrapper').imagesLoaded(function() {
-		
+
 		var $container = $('#portfolio-wrapper');
 			$select = $('#filters select');
 
@@ -173,7 +183,7 @@ jQuery(document).ready(function($) {
 
 		// update columnWidth on window resize
 		$(window).smartresize(function(){
-		
+
 			$container.isotope({
 			// update columnWidth to a percentage of container width
 			masonry: { columnWidth: $container.width() / 12 }
@@ -186,20 +196,20 @@ jQuery(document).ready(function($) {
 		});
 
 		$select.change(function() {
-			
+
 			var filters = $(this).val();
 
 				$container.isotope({
 					filter: filters
 				});
-			
+
 			});
 
 			var $optionSets = $('#filters .option-set'),
 		  	$optionLinks = $optionSets.find('a');
 
 		  	$optionLinks.click(function(){
-			
+
 				var $this = $(this);
 				// don't proceed if already selected
 				if ( $this.hasClass('selected') ) {
@@ -225,9 +235,9 @@ jQuery(document).ready(function($) {
 			}
 
 			return false;
-			
+
 		  });
-		
+
 	});
-	
+
 });

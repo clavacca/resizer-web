@@ -1,12 +1,13 @@
 menu: download
-title: Download the Image Resizer Free
+title: Download ImageResizer Free
 Libs: -comments, plusone
+Description: "Download ImageResizer and get up and running in less than 3-minutes"
 Icon: download-alt
 
 h1 Download ImageResizer
 
 h1
-  | Download 
+  | Download
   = releases.first.heading
 
 .row
@@ -14,23 +15,23 @@ h1
     form#signupform.form-inline method="post" action="http://news.imazen.io/subscribe" accept-charset="UTF-8" onsubmit="return verifyRequired('signupform');"
       input type="hidden" name="redirect" value=latest_release.meta.fullfile
       input type="hidden" name="list" value="9qAaYaDsCOem6WVY7jWnhA"
-      h3 style="margin-bottom:0" 
+      h3 style="margin-bottom:0"
         | Notify me when important updates are available
         p style="margin-top:10px"
-          | Email: 
+          | Email:
           input type="text" name="email" placeholder="name@domain.com"
-          |  &nbsp; 
+          |  &nbsp;
           button type="submit" name="Submit" class="btn btn-primary"
             | Subscribe and Download V#{latest_release.meta.shortversion} (avg 4 per year) &raquo;
 
     p style="margin-top:10px;font-size:10px; color:gray;margin-bottom:0"
     	| If you've already subscribed, use this link instead:
     p style="margin:0"
-      a href=latest_release.meta.fullfile class="btn"
+      a data-href=latest_release.meta.fullfile class="btn download-link"
         | Download V#{latest_release.meta.shortversion} source, binaries, plugins, and sample code (15MB)
 
     p style="margin-top:5px;font-size:10px; color:gray;margin-bottom:0"
-      | This version includes 
+      | This version includes
       a href=releases.first.path
         == latest_release.meta_summary
         | . Click for release notes.
@@ -56,3 +57,28 @@ script type="text/javascript" src="http://www.googleadservices.com/pagead/conver
 noscript
   div style="display:inline;"
     img height="1" width="1" style="border-style:none;" alt="" src="http://www.googleadservices.com/pagead/conversion/1054642781/?label=HCaSCK3o3wEQ3aTy9gM&amp;guid=ON&amp;script=0"
+
+
+
+
+/ modal for thank you
+#thankyouModal.modal.hide.fade aria-hidden="true" aria-labelledby="thankyouModalLabel" role="dialog" tabindex="-1"
+  .modal-header
+    button.close aria-hidden="true" data-dismiss="modal" type="button"
+    h3#thankyouModalLabel Thank You for Downloading ImageResizer
+  .modal-body
+    p
+      a.btn.btn-success href="docs/quick-start" Quick Start Guide
+      | &nbsp; up and running in 3-minutes or less
+    p
+      a.btn href="docs/basics" Basic Commands
+      | &nbsp; learn the basics of the URL API
+    p
+      a.btn href="docs/install" Detailed Installation Guides
+      | &nbsp; chose the installation method that is best for you
+    p
+      a.btn href="docs/best-practices" Best Practices
+      | &nbsp; learn from our years of experience
+  .modal-footer
+    button.btn aria-hidden="true" data-dismiss="modal" Close
+    / button.btn.btn-primary Save changes
