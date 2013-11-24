@@ -35,6 +35,20 @@ jQuery(document).ready(function($){
 			namespace: "mr-rotato" // Defaults to “carousel”.
 	})
 
+	// for ab test
+	$('#abflex').flexslider({
+	    animation: "slide",
+	    slideshowSpeed: 5700,
+	    animationSpeed: 1350,
+			// easing: "swing",
+	    animationLoop: true,
+	    maxItems: 1,
+	    // itemWidth:400,
+			// controlNav: false,
+			// directionNav: false,
+			// move: 2
+     });
+
 });
 
 
