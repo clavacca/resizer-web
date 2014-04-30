@@ -1,7 +1,7 @@
 Layout: layout
 
-- s = page.meta.sidebar && !(/\Afalse|null|nil|off|none\Z/i =~ page.meta.sidebar) ? page.meta.sidebar : nil
-- a = !!(page.meta.accordion && !(/\Afalse|null|nil|off|none\Z/i =~ page.meta.sidebar))
+- s = page.meta.sidebar && !(/\Afalse|null|nil|off|none\Z/i =~ page.meta.sidebar.to_s) ? page.meta.sidebar : nil
+- a = !!(page.meta.accordion && !(/\Afalse|null|nil|off|none\Z/i =~ page.meta.accordion.to_s))
 .row
   - if a
     aside.span3.sidebar
