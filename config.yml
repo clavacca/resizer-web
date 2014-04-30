@@ -64,12 +64,6 @@ categories:
     meta:
       accordion: true
 
-  - tag: benefits
-    title: Benefits
-    include: /docs/benefits
-    page: /docs/benefits
-    meta:
-      accordion: true
 
   - tag: use
     title: Using ImageResizer
