@@ -53,7 +53,7 @@ categories:
       - /docs/2to3
     page: /docs/install
     meta:
-      sidebar: /docs/install/sidebar
+      accordion: true
       append: /docs/install/generic
 
   - tag: extend
@@ -62,21 +62,21 @@ categories:
       - /docs/extend
     page: /docs/extend
     meta:
-      sidebar: /docs/extend/sidebar
+      accordion: true
 
   - tag: benefits
     title: Benefits
     include: /docs/benefits
     page: /docs/benefits
     meta:
-      sidebar: /docs/benefits/sidebar
+      accordion: true
 
   - tag: use
     title: Using ImageResizer
     include: /docs
     page: /docs
     meta: 
-      sidebar: /docs/sidebar
+      accordion: true
 
   - tag: plugins
     title: Plugins
@@ -84,6 +84,7 @@ categories:
     page: /plugins
     meta:
       sidebar: /plugins/sidebar
+      accordion: true
 
 #  - tag: licenses
 #    title: Licenses
@@ -98,6 +99,7 @@ categories:
       layout: release
       libs: plusone
       sidebar: /releases/sidebar
+      accordion: true
 
 
 

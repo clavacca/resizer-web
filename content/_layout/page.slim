@@ -1,21 +1,17 @@
 Layout: layout
 
 - s = page.meta.sidebar && !(/\Afalse|null|nil|off|none\Z/i =~ page.meta.sidebar) ? page.meta.sidebar : nil
-
+- a = !!(page.meta.accordion && !(/\Afalse|null|nil|off|none\Z/i =~ page.meta.sidebar))
 .row
-  article class=(s ? "span9" : "span12")
+  - if a
+    aside.span3.sidebar
+      == partial :"/accordion"
+  article class=(s && a ? "span6" : (s || a) ? "span9" : "span12")
     - if page.lib?('plusone')
       div style="width:70px;padding-top:25px;float:right"
         .g-plusone
     - if page.meta.warning
       .alert = page.meta.warning
-    - if !s && page.path.start_with?("/docs")
-      .sub_nav_bar
-        ul.category_headers
-          - config.categories.each do |c|
-            li class=(page.meta.category == c.tag ? "active" : "")
-              a href=c.page
-                =c.title
 
     == yield
 
@@ -29,12 +25,6 @@ Layout: layout
 
   - if s
     aside.span3.sidebar
-      ul.category_headers
-        - config.categories.each do |c|
-          li class=(page.meta.category == c.tag ? "active" : "")
-            a href=c.page
-              =c.title
-
       == partial page.meta.sidebar
 
 == yield_content(:next_row)

@@ -1,0 +1,22 @@
+flags: hidden
+
+
+
+ruby: 
+  @tree = []
+
+  cmses = {heading: "CMS Notes"}
+  cmses[:children]  = [{href: "/docs/workswith", title: "Compatibility Overview"}] + index.pages_tagged("cms")
+  @tree << cmses
+
+  @tree << { heading: "Releases", children: [{href: "/releases"}] + releases}
+
+
+
+
+
+
+ul.nav.nav-list
+  - @tree.each do |n|
+    == partial :accordion_node, :locals => { :node => n}
+

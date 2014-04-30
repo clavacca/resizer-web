@@ -1,0 +1,12 @@
+- node = {title: node.heading, href: node.path} if node.is_a?(Hardwired::Template)
+li
+  - if node[:heading]
+    label.tree-toggle.nav-header
+      = node[:heading]
+  - if node[:title] || node[:href]
+    a href=(node[:href] || "#") 
+      = node[:title] || index[node[:href]].title
+  - if node[:children]
+    ul.nav.nav-list.tree
+      - node[:children].each do |n|
+        == partial :accordion_node, :locals => { node: n}
