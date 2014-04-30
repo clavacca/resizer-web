@@ -7,11 +7,59 @@ ruby:
   @tree = []
   getting_started = {heading: "Getting Started"}
   gs = getting_started[:children] = []
+    installation = []
+  gs << {heading: "Installation", children: installation}
+    installation << {href: "/docs/install", title:"Installation Guide"}
+    installation << {href: "/docs/workswith", title: "CMS and Compatibility Guide"}
+    installation << {href: "/docs/cloud", title: "Cloud Architecture Guide"}
+    installation << {href: "/docs/redist", title: "Integration and Redistribution Guide"}
+    use = []
+  gs << {heading: "Use", children: use}
+    use << {href: "/docs/basics", title: "Basic Commands"}
+    use << {href: "/benefits/comprehensive", title: "Advanced Features"}
+    use << {href: "/docs/best-practices", title: "Best Practices Guide"}
+    use << {href: "/docs/reference", title: "Full Command Reference"}
+    use << {href: "/docs/configuration", title: "Configuration Reference"}
+    use << {href: "/docs/managed", title: "Managed API Uses"}
 
   @tree << getting_started
 
-  
+  troubleshooting = {heading: "Troubleshooting"}
+  t = troubleshooting[:children] = []
+  t << {href: "/docs/faq", title: "FAQ"}
+  t << {href: "/docs/troubleshoot", title: "Troubleshooting Guide"}
+  t << {href: "/search", title: "Search our Site"}
+  t << {href: "stackoverflow.com/question/tagged/imageresizer", title: "StackOverflow:ImageResizer"}
+  t << {href: "/docs/geterror", title: "Getting Detailed Error Messages"}
+  t << {href: "/plugins/diagnostics", title: "Accessing Self-Diagnostics"}
+  t << {href: "/support", title: "Support Page"}
+  t << {href: "/docs/install/classicmode", title: "Running on IIS or IIS7 Classic Mode"}
 
+  @tree << troubleshooting
+
+  tutorials = {heading: "Tutorials"}
+  tut = tutorials[:children] = []
+  tut << {href: "http://www.nathanaeljones.com/blog/2011/combining-jcrop-and-server-side-image-resizing", title: "Use jCrop to create a cropping UI in 11 lines"}
+  tut << {href: "/docs/howto/watermark-by-folder-or-size", title: "Watermark images based on folder name or display size"}
+  tut << {href: "/docs/howto/upload-and-resize", title: "Convert and resize images as they are uploaded"}
+  tut << {href:"/docs/howto/generate-versions", title: "Generate thumbnails and multiple sizes to disk"}
+
+  @tree << tutorials
+
+  extend = {heading: "Extend"}
+  e = extend[:children] = []
+  e << {href: "/docs/community", title: "Community Plugins, Articles and Feedback"}
+  e << {href: "/docs/extend/basics", title: "Making a Simple Plugin"}
+  e << {href: "/docs/extend/virtualimageprovider", title: "Making Your Own Source File Provider"}
+  e << {href: "http://documentation.imageresizing.net/doxygen/namespaces.html", title: "Full generated documentation for the core and all plugins, with graphs"}
+  e << {href: "http://documentation.imageresizing.net/docu/", title: "Simple generated documentation for the ImageResizer core"}
+
+  @tree << extend
+
+  plugins = {heading: "Plugins"}
+  p = plugin[:children] = []
+  p << {heading: "Essential", children: [{href: "/"}]}
+/ You were trying to find a way to list all of the plugins and editions when you left off.
 
 
 
@@ -42,20 +90,3 @@ ruby:
 ul.nav.nav-list
   - @tree.each do |n|
     == partial :accordion_node, :locals => { :node => n}
-/
-    getting_started = {heading: "Getting Started"}
-    gs = getting_started[:children] = []
-    gs << {heading: "Installation and Guides", children: install-guides}
-    install-guides = []
-    install-guides << {href: "/docs/install", title: "Installation Guide"}
-    install-guides << {href: "/docs/workswith", title: "CMS and Compatibility Guide"}
-    install-guides << {href: "/docs/cloud", title: "Cloud Architecture Guide"}
-    install-guides << {href: "/docs/redist", title: "Integration and Redistribution Guide"}
-    gs << {heading: "Use", children: use}
-    use = []
-    use << {href: "/docs/basics", title: "Basic Commands"}
-    use << {href: "/benefits/comprehensive", title: "Advanced Features"}
-    use << {href: "/docs/best-practices", title: "Best Practices Guide"}
-    use << {href: "/docs/reference", title: "Full Command Reference"}
-    use << {href: "/docs/configuration", title: "Configuration Reference"}
-    use << {href: "/docs/managed", title: "Managed API Uses"}
