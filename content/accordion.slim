@@ -2,9 +2,32 @@ flags: hidden
 
 
 
-ruby: 
-  @tree = []
+ruby:
 
+  @tree = []
+  getting_started = {heading: "Getting Started"}
+  gs = getting_started[:children] = []
+
+  @tree << getting_started
+
+  
+
+
+
+
+  install = {heading: "Install"}
+  def a(list, link, title)
+  	list << {href:link, title: title}
+  end
+  c = install[:children] = []
+  a c, "/docs/install", "Install ImageResizer"
+  c << {href:"/docs/install", title: "Install ImageResizer"}
+  c << {href:"/docs/install", title: "Install ImageResizer"}
+  legacy = []
+  c << {heading: "Legacy", children: legacy}
+	legacy << {href: "/docs/workswith", title: "Compatibility Overview"}
+
+  @tree << install
   cmses = {heading: "CMS Notes"}
   cmses[:children]  = [{href: "/docs/workswith", title: "Compatibility Overview"}] + index.pages_tagged("cms")
   @tree << cmses
@@ -19,4 +42,20 @@ ruby:
 ul.nav.nav-list
   - @tree.each do |n|
     == partial :accordion_node, :locals => { :node => n}
-
+/
+    getting_started = {heading: "Getting Started"}
+    gs = getting_started[:children] = []
+    gs << {heading: "Installation and Guides", children: install-guides}
+    install-guides = []
+    install-guides << {href: "/docs/install", title: "Installation Guide"}
+    install-guides << {href: "/docs/workswith", title: "CMS and Compatibility Guide"}
+    install-guides << {href: "/docs/cloud", title: "Cloud Architecture Guide"}
+    install-guides << {href: "/docs/redist", title: "Integration and Redistribution Guide"}
+    gs << {heading: "Use", children: use}
+    use = []
+    use << {href: "/docs/basics", title: "Basic Commands"}
+    use << {href: "/benefits/comprehensive", title: "Advanced Features"}
+    use << {href: "/docs/best-practices", title: "Best Practices Guide"}
+    use << {href: "/docs/reference", title: "Full Command Reference"}
+    use << {href: "/docs/configuration", title: "Configuration Reference"}
+    use << {href: "/docs/managed", title: "Managed API Uses"}
