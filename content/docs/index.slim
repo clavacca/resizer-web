@@ -5,71 +5,180 @@ Icon: book
 
 h1 Documentation
 
-markdown:
-  Not finding what you're looking for? Try [searching the site](/search).
+.row
+  .span9
+    markdown:
+      ## Welcome to the Docs Page!
+        We've put everything you need to use ImageResizer in the accordion directory, but you can also [do a quick search](/search) to get to where you need to go.
+        
+        If you're looking for some bare basics to get yourself started with ImageResizer, then keep reading or visit our [tutorials page](/tutorials).
+    br
+.row
+  .span9
+    markdown:
+      ## Getting Started
+      First of all, congratulations on becoming a part of the ImageResizer community. All of our members started right here at the beginning, and the creative uses they've found for our product... well, [see for yourself](/docs/benefits/customers).
 
+      But right now, you need basics, and basics you shall have, starting with...
+
+      ### Installation
+      For those of you afflicted with highly-specific amnesia of the computer skills (happens to the best of us), you first need to download what it is you intend to install, which you can do [on our download page](/download).
+
+      If you're using Nuget, you'll need this:
+    code Install-Package
+    br
+    code ImageResizer.MvcWebConfig
+    br
+    br
+    markdown:
+      If you need more comprehensive instructions, or if you're an [IIS Administrator](/docs/install/administrators), or need anything else cleared up, we have a full-on [installation page](docs/install), complete with an extra [Nuget installation guide]("/docs/install/nuget) for the ones who love the nitty-gritty details.
+
+      ###Installing Plugins
+
+      ImageResizer uses a plugin structure for its different capabilities, and you'll need to install the ones you intend to use. Here's how.
+
+      #### Installing one of the included Basic plugins
+
+      1. In the [&lt;plugins /> section](/docs/configuration) of Web.config, insert &lt;add name="PluginName" />
+
+      #### Installing another bundle
+
+      You can find the plugin DLL files in the /dlls/release folder of your download. Trial versions are located in /dlls/trial/
+
+      1. In Visual Studio, right click on your project and choose "Add reference". Browse to the plugin DLL and click "OK". 
+      2. In the [&lt;plugins> section](/docs/configuration) of Web.config, insert &lt;add name="PluginName" />
+      3. Look at the plugin documentation to see what configuration options (if any) are available.
+
+    br
+    markdown:
+      Up next, you'll probably want to know...
+      
+      ### Just What Can ImageResizer Do?
+
+      So glad you asked.
+
+      ### Width & Height
+
+      You can set bounds for an image with the `width` and/or `height` commands. How those bounds are interpreted is determined by the `mode` command. If only `width` *or* `height` is specified, aspect ratio is maintained.
+
+      ![Resizing modes](http://z.zr.io/rw/diagrams/resizing-modes.png)
+
+      Note:  `mode=carve` requires the [SeamCarving plugin](/plugins/seamcarving). 
+
+      ### Scale=down|both|canvas
+
+      **By default, images are *not* enlarged** - the image stays its original size if you request a larger size.
+
+
+      To allow both reduction and enlargement, use `scale=both`. Image enlargement causes blurriness and should be avoided. `scale=canvas` is another option. The image never gets upscaled, but the canvas is expanded to fill the desired area.
+
+      Here we upscale an image using `scale=down`, `scale=both`, and `scale=canvas` respectively
 .row
   .span3
-    h2 Install
-    ul.star_list
-      li: a href="/docs/install" Installation Guide
-      li: a href="/docs/workswith" CMS & Compatibility Reference 
-      li: a href="/docs/cloud" Cloud Architecture Guide
-      li: a href="/docs/best-practices" Architecture Best Practices Guide
-      li: a href="/docs/redist" Integration and Redistribution Guide
-      li: a href="/docs/troubleshoot" Troubleshooting Guide
+    figure style="text-align: center"
+      img src="http://img.imageresizing.net/tractor-tiny.jpg;width=150;scale=down" style="border: 1px solid gray"
+      figcaption The small picture
   .span3
-    h2 Use
-    ul.star_list
-      li: a href="/docs/basics" URL API Basics
-      li: a href="/docs/benefits/comprehensive" Command Showcase
-      li: a href="/docs/best-practices" Best Practices Guide
-
-      li: a href="/docs/reference" Full Command Reference
-
-      li: a href="/docs/managed" Managed API Examples
-
-      li: a href="/docs/configuration" Configuration Reference
-
-      li: a href="/docs/faq" FAQ
-
+    figure style="text-align: center"
+      img src="http://img.imageresizing.net/tractor-tiny.jpg;width=150;scale=both" style="border: 1px solid gray" 
+      figcaption Big, beautiful, a little blurry
   .span3
-    h2 Extend
-    ul.star_list
-      li: a href="/docs/community" Community Plugins, Articles, & Feedback
-      li: a href="/docs/extend/basics" Making a simple plugin
-      li: a href="/docs/extend/virtualimageprovider" Making your own source file provider
-      li: a href="http://documentation.imageresizing.net/doxygen/namespaces.html" Full generated documentation for the core and all plugins, with graphs
-
-      li: a href="http://documentation.imageresizing.net/docu/" Simple generated documentation for the ImageResizer core
+    figure style="text-align: center"
+      img src="http://img.imageresizing.net/tractor-tiny.jpg;width=150;scale=canvas" style="border: 1px solid gray"
+      figcaption Framed!
 .row
-  .span3
-    h2 Tutorials
-    ul.arrow_list
-      li: a href="http://nathanaeljones.com/573/combining-jcrop-and-server-side-image-resizing/" Use jCrop to create a cropping UI in 11 lines
-      li: a href="/docs/howto/watermark-by-folder-or-size" Watermark images based on folder name or display size
-      li: a href="/docs/howto/upload-and-resize" Convert and resize images as they are uploaded
-      li: a href="/docs/howto/generate-versions" Generate thumbnails and multiple sizes to disk
-  .span3
-    h2 Troubleshooting
-    ul.star_list
+  .span9
+    markdown:
+      ### Alignment
 
-      li: a href="/docs/troubleshoot" Troubleshooting Guide
-      li: a href="/support" Support
-      li: a href="/docs/geterror" Getting detailed error messages
-      li: a href="/plugins/diagnostics" Accessing self-diagnostics
-      li: a href="/docs/install/classicmode" Running on IIS6 or IIS7 Classic Mode
-      li: a href="/docs/howto/avoid-network-limit" SAN & NAS Storage - avoid the Network BIOS limit reached error message
+      So, you don't like images being centered when you use `mode=crop`, `mode=pad`, or `scale=canvas`? You can pick the alignment type with the `anchor` command. 
 
+      Valid values are `topleft`, `topcenter`, `topright`, `middleleft`, `middlecenter`, `middleright`, `bottomleft`, `bottomcenter`, and `bottomright`.
+
+      Mode=Crop, Anchor=Topleft: ![](http://img.imageresizing.net/zermatt.jpg;w=100;h=100;mode=crop;anchor=topleft)
+      Anchor=bottomright: ![](http://img.imageresizing.net/zermatt.jpg;w=100;h=100;mode=crop;anchor=bottomright)
+
+      Mode=Pad, Bgcolor=gray, Anchor=Topleft: ![](http://img.imageresizing.net/zermatt.jpg;w=100;h=100;bgcolor=gray;anchor=topleft)
+       Anchor=bottomright: ![](http://img.imageresizing.net/zermatt.jpg;w=100;h=100;bgcolor=gray;anchor=bottomright)
+
+      Scale=canvas, bgcolor=gray, Anchor=Topleft: ![](http://img.imageresizing.net/tractor-tiny.jpg;w=150;bgcolor=gray;scale=canvas;anchor=topleft)
+
+      ### Formats & compression
+
+      Set `format=jpg`, `format=gif`, or `format=png` to force a particular output format. By default, the original format (or the closest match) is used; however, you can convert *any* format file to *any* other file, maintaining transparency, IF the [PrettyGifs plugin](/plugins/prettygifs) is installed.
+
+      Adjust jpeg compression with the `quality=0..100` command. The default is 90, an excellent tradeoff between size and perfection.
+
+      ### Filters! Filters Everywhere!
+
+      The following filters require the [SimpleFilters plugin](/plugins/simplefilters), part of the Creative edition.
 .row
-  - editions.each do |e|
-    .span3
-      h3
-        a(href="#{e.path}") =e.heading
-      ul
-        -e.edition_plugins.each do |plugin|
-          li
-            a(href="#{plugin.path}")= plugin.heading
+  .span9
+    figure style="text-align: center"
+     img src="http://img.imageresizing.net/utah2.jpg;width=200"
+     figcaption Oh how nice: a sunset. Let's do stuff to it.
+    markdown:
+      ### 4 Different Grayscales
+
+      With 4 different ways to grayscale, your pictures can pop in way more than 50 shades of gray.
+
+      `s.grayscale`=`true|y|ry|ntsc|bt709|flat`  (true, ntsc, and y produce identical results)
+
+      The following examples use NTSC/Y/True, RY, BT709, and Flat respectively
+
+      ![s.grayscale=true](http://img.imageresizing.net/utah2.jpg;width=200;s.grayscale=true)
+      ![s.grayscale=ry](http://img.imageresizing.net/utah2.jpg;width=200;s.grayscale=ry)
+      ![s.grayscale=bt709](http://img.imageresizing.net/utah2.jpg;width=200;s.grayscale=bt709)
+      ![s.grayscale=flat](http://img.imageresizing.net/utah2.jpg;width=200;s.grayscale=flat)
+
+
+      ### Adjust Opacity/Alpha
+
+      `s.alpha`= `0..1`
+
+      For true transparency, combine with `format=png`. Otherwise, the image will be blended against `bgcolor`.
+      ![s.alpha=0.10](http://img.imageresizing.net/utah2.jpg;width=200;s.alpha=0.10)
+      ![s.alpha=0.20](http://img.imageresizing.net/utah2.jpg;width=200;s.alpha=0.20)
+      ![s.alpha=0.40](http://img.imageresizing.net/utah2.jpg;width=200;s.alpha=0.40)
+      ![s.alpha=0.60](http://img.imageresizing.net/utah2.jpg;width=200;s.alpha=0.60)
+      ![s.alpha=0.80](http://img.imageresizing.net/utah2.jpg;width=200;s.alpha=0.80)
+      ![s.alpha=1](http://img.imageresizing.net/utah2.jpg;width=200;s.alpha=1)
+
+
+
+      ### Adjust Brightness
+
+
+      `s.brightness`= `-1..1`
+
+
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.brightness=-1)
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.brightness=-0.7)
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.brightness=-0.3)
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.brightness=0)
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.brightness=0.3)
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.brightness=0.7)
+
+      ### Adjust Saturation
+
+
+      `s.saturation`= `-1..1`
+
+
+
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.saturation=-1)
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.saturation=-0.7)
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.saturation=-0.3)
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.saturation=0)
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.saturation=0.4)
+      ![](http://img.imageresizing.net/red-leaf.jpg;width=200;s.saturation=0.9)
+
+
+      These are just a few of the available commands. To learn more, see the [full command reference](/docs/reference)
+
+      Not covered here: cropping, zooming, rotating, padding, margins, borders, shadows, watermarks, 404s, auto-trim, inversion, sepia, contrast, and alternate pipelines.
+
+
 
 - temp = {}
 == nullify do
@@ -80,13 +189,6 @@ markdown:
           =c.title
       == partial c.meta.sidebar unless c.meta.sidebar.nil?
 
-h4 Uncategorized documentation
-
-- uncategorized = index.pages.reject { |p| temp[:links].include?(p.path) || !(p.path.start_with?('/docs') || p.path.start_with?('/plugins'))}
-- uncategorized.each do |p|
-  li
-    a href=p.path
-      = p.heading
 
 
 
