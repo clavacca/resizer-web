@@ -10,9 +10,11 @@ ruby:
     installation = []
   gs << {heading: "Installation", children: installation}
     installation << {href: "/docs/install", title:"Installation Guide"}
+    installation << {href: "/docs/install/nuget", title: "Installation with Nuget"}
     installation << {href: "/docs/workswith", title: "CMS and Compatibility Guide"}
     installation << {href: "/docs/cloud", title: "Cloud Architecture Guide"}
     installation << {href: "/docs/redist", title: "Integration and Redistribution Guide"}
+    installation << {href: "/plugins/install", title: "Installing a Plugin"}
     use = []
   gs << {heading: "Use", children: use}
     use << {href: "/docs/basics", title: "Basic Commands"}
@@ -29,7 +31,7 @@ ruby:
   t << {href: "/docs/faq", title: "FAQ"}
   t << {href: "/docs/troubleshoot", title: "Troubleshooting Guide"}
   t << {href: "/search", title: "Search our Site"}
-  t << {href: "stackoverflow.com/question/tagged/imageresizer", title: "StackOverflow:ImageResizer"}
+  t << {href: "http://stackoverflow.com/question/tagged/imageresizer", title: "StackOverflow:ImageResizer"}
   t << {href: "/docs/geterror", title: "Getting Detailed Error Messages"}
   t << {href: "/plugins/diagnostics", title: "Accessing Self-Diagnostics"}
   t << {href: "/support", title: "Support Page"}
@@ -39,12 +41,18 @@ ruby:
 
   tutorials = {heading: "Tutorials"}
   tut = tutorials[:children] = []
+  tut << {href: "/docs/tutorials", title: "Tutorials Page"}
   tut << {href: "http://www.nathanaeljones.com/blog/2011/combining-jcrop-and-server-side-image-resizing", title: "Use jCrop to create a cropping UI in 11 lines"}
   tut << {href: "/docs/howto/watermark-by-folder-or-size", title: "Watermark images based on folder name or display size"}
   tut << {href: "/docs/howto/upload-and-resize", title: "Convert and resize images as they are uploaded"}
   tut << {href:"/docs/howto/generate-versions", title: "Generate thumbnails and multiple sizes to disk"}
 
   @tree << tutorials
+
+  cmses = {heading: "CMS Notes"}
+  cmses[:children]  = [{href: "/docs/workswith", title: "Compatibility Overview"}] + index.pages_tagged("cms")
+
+  @tree << cmses
 
   extend = {heading: "Extend"}
   e = extend[:children] = []
@@ -57,30 +65,40 @@ ruby:
   @tree << extend
 
   plugins = {heading: "Plugins"}
-  p = plugin[:children] = []
-  p << {heading: "Essential", children: [{href: "/"}]}
-/ You were trying to find a way to list all of the plugins and editions when you left off.
-
-
-
-  install = {heading: "Install"}
-  def a(list, link, title)
-  	list << {href:link, title: title}
+  plugins[:children] = editions.map do |e|
+    {heading: e.heading, children: [e] + e.edition_plugins.map{|c| {title: c.heading, href: c.path}}}
   end
-  c = install[:children] = []
-  a c, "/docs/install", "Install ImageResizer"
-  c << {href:"/docs/install", title: "Install ImageResizer"}
-  c << {href:"/docs/install", title: "Install ImageResizer"}
-  legacy = []
-  c << {heading: "Legacy", children: legacy}
-	legacy << {href: "/docs/workswith", title: "Compatibility Overview"}
 
-  @tree << install
-  cmses = {heading: "CMS Notes"}
-  cmses[:children]  = [{href: "/docs/workswith", title: "Compatibility Overview"}] + index.pages_tagged("cms")
-  @tree << cmses
 
-  @tree << { heading: "Releases", children: [{href: "/releases"}] + releases}
+  @tree << plugins
+
+  legacy = {heading: "Legacy"}
+  l = legacy[:children] = []
+  l << {heading: "Releases", children: [{href: "/releases"}] + releases}
+    op = []
+  l << {heading: "Older Policies", children: op}
+    op << {href: "/plugins/bundles", title: "Bundles Overview"}
+    op << {href: "/plugins/bundles/free", title: "Free Bundle"}
+    op << {href: "/plugins/bundles/1", title: "Performance Bundle"}
+    op << {href: "/plugins/bundles/2", title: "Design Bundle"}
+    op << {href: "/plugins/bundles/3", title: "Cloud Bundle"}
+    op << {href: "/plugins/bundles/4", title: "Extras Bundle"}
+    op << {href: "/plugins/bundles/contract", title: "Support Contract Plugins"}
+
+  @tree << legacy
+
+  def getPaths(n)
+    n = {href: n.path} if n.is_a?(Hardwired::Template)
+    return [] if n.nil?
+    return [n[:href]] if n[:children].nil?
+    [n[:path]] + n[:children].map{|c| getPaths(c)}
+  end
+  allpaths = getPaths({children:@tree}).compact.flatten
+  
+
+  uncategorized = index.pages.reject { |p| allpaths.include?(p.path) || !(p.path.start_with?('/docs') || p.path.start_with?('/plugins'))}
+
+  @tree << {heading: "uncategorized", children: uncategorized}
 
 
 
