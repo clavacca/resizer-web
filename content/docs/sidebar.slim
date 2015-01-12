@@ -8,7 +8,10 @@ div class="accordionItem"
     li
       a href="http://imageresizing.net/download" Download
     li
-      a href="link" Basic Installation Guide
+      a href="link" Manual Installation
+    li
+      a href="link" Nuget Installation
+
     li
       a href="link" Comprehensive Installation Guide
     li
@@ -27,96 +30,9 @@ div class="accordionItem"
 div class="accordionItem"
   h2 Plugins
   ul.submenu
-    li
-      a href="link" AdvancedFilters plugin 
-    li
-      a href="link" AnimatedGifs plugin
-    li
-      a href="link" AutoRotate plugin
-    li
-      a href="link" AzureReader plugin
-    li
-      a href="link" AzureReader2 plugin
-    li
-      a href="link" BatchZipper plugin  
-    li
-      a href="link" ClientCache plugin
-    li
-      a href="link" CloudFront plugin
-    li
-      a href="link" CopyMetadata plugin
-    li
-      a href="link" CropAround plugin   
-    li
-      a href="link" Custom Overlay plugin
-    li
-      a href="link" DefaultEncoder plugin
-    li
-      a href="link" DefaultSettings plugin
-    li
-      a href="link" Diagnostics plugin
-    li
-      a href="link" DiskCache plugin
-    li
-      a href="link" Drop Shadow plugin
-    li
-      a href="link" Faces plugin  
-    li
-      a href="link" FFmpeg plugin 
-    li  
-      a href="link" FolderResizeSyntax plugin
-    li  
-      a href="link" FreeImage plugins
-    li  
-      a href="link" Gradient plugin
-    li  
-      a href="link" IEPngFix plugin
-    li  
-      a href="link" Image404 plugin
-    li  
-      a href="link" ImageHandlerSyntax plugin
-    li  
-      a href="link" Logging plugin
-    li  
-      a href="link" MongoReader plugin 
-    li  
-      a href="link" PdfRenderer
-    li  
-      a href="link" Presets plugin
-    li  
-      a href="link" PrettyGifs plugin
-    li  
-      a href="link" PsdComposer plugin
-    li  
-      a href="link" PsdReader plugin 
-    li  
-      a href="link" RedEye plugin   
-    li  
-      a href="link" RemoteReader plugin
-    li  
-      a href="link" S3Reader plugin 
-    li  
-      a href="link" S3Reader2 plugin
-    li  
-      a href="link" SeamCarving plugin
-    li  
-      a href="link" SimpleFilters plugin
-    li  
-      a href="link" SizeLimiting plugin
-    li  
-      a href="link" SpeedOrQuality plugin
-    li  
-      a href="link" SQLReader plugin
-    li  
-      a href="link" VirtualFolder plugin
-    li  
-      a href="link" Watermark plugin
-    li  
-      a href="link" WebP plugins 
-    li  
-      a href="link" WhitespaceTrimmer plugin
-    li  
-      a href="link" WIC plugins 
+    - index.pages_tagged("plugin").each do |e|
+      li
+        a(href="#{e.path}")= e.heading
 div class="accordionItem"
   h2 Cool Stuff
   ul.submenu

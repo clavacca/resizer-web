@@ -1,3 +1,4 @@
+Tags: plugin
 UserVoice: true
 Edition: performance
 Bundle: 3

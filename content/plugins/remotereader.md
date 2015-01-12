@@ -1,3 +1,4 @@
+Tags: plugin
 Bundle: 3
 Aliases: /plugins/remotetreader
 Edition: performance
