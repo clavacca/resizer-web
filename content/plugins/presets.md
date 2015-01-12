@@ -1,3 +1,4 @@
+Tags: plugin
 Bundle: free
 Edition: free
 Tagline:  Created named settings groups and and reference them with ?preset=name instead of specifying them all in the URL

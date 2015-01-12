@@ -1,3 +1,4 @@
+Tags: plugin
 Bundle: contract
 Edition: elite
 Tagline: Provides sophisticated eye detection and red eye correction

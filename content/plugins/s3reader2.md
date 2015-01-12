@@ -1,3 +1,4 @@
+Tags: plugin
 Bundle: 3
 Edition: performance
 Tagline: Process and resize images located on a remote Amazon S3 bucket. A VirtualPathProvider. Works best when combined with DiskCache.

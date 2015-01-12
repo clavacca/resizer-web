@@ -1,3 +1,4 @@
+Tags: plugin
 Bundle: 2
 Edition: creative
 Tagline: Content-aware image resizing (Fast C++ exe, requires Full Trust)

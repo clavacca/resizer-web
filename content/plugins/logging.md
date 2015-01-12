@@ -1,3 +1,4 @@
+Tags: plugin
 Bundle: free
 Edition: free
 Tagline: Allows logging through NLog

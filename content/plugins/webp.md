@@ -1,3 +1,4 @@
+Tags: plugin
 Bundle: contract
 Edition: elite
 Tagline: Decode and encode .webp images

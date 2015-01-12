@@ -18,7 +18,7 @@ h1 Documentation
     If you're already reasonably familiar with us, you'll find information on [plugins](link), [troubleshooting](link) and [cool ways to use our product](link) all right here.
 
     Not finding what you're looking for? Try [searching the site](/search).
-ruby:
+  ruby:
     require 'uri'
     require 'net/http'
     require 'github/markdown'
@@ -89,6 +89,8 @@ ruby:
     end_at = doc.css("a[name='troubleshooting_guide']")
      
     content = cloneBetween(doc.children,start_at,end_at)
+
+
      
-== content.to_html
+  == content.to_html
      
