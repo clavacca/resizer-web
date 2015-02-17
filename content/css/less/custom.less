@@ -431,9 +431,19 @@ overflow: auto;
 padding: 6px;
 }
 
+
+
+
+
+
+
+
+
 .accordionItem h2 { 
-margin: 0; font-size: 1.1em; 
-padding: 0.4em; color: #fff; 
+margin: 0; 
+font-size: 1.1em; 
+padding: 0.4em; 
+color: #fff; 
 background-color: #00aec4;
 font-weight: bold !important;
 }
@@ -446,6 +456,8 @@ background-color: #00BAD1;
 .accordionItem ul {
 margin: 0; padding: 1em 0.4em; 
 background-color: #eef; 
+height: 100px;
+overflow: scroll;
 }
 
 .accordionItem.gone h2 {
@@ -467,6 +479,16 @@ aside.span4.sidebar {
   float: right;
 }
 
-.docs {
-  margin-left: 15px;
+
+.docsbar {
+  position: absolute;
+  right: 0px !important;
+  width: 25%;
 }
+
+.docsbar-fixed{
+  position: fixed;
+  top: 0px !important;
+  width: 25%;
+}
+
