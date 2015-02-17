@@ -1,66 +1,80 @@
 layout: false
 Flags: hidden
 
-
-div class="accordionItem"
-  h2 Getting Started
-  ul.submenu
-    li
-      a href="http://imageresizing.net/download" Download
-    li
-      a href="link" Manual Installation
-    li
-      a href="link" Nuget Installation
-
-    li
-      a href="link" Comprehensive Installation Guide
-    li
-      a href="link" Installing a Plugin Manually
-div class="accordionItem"
-  h2 Reference
-  ul.submenu
-    li
-      a href="link" Full Command Reference
-    li
-      a href="link" Managed API Examples
-    li
-      a href="link" Configuration Reference
-    li
-      a href="link" CMS and Compatibility Reference
-div class="accordionItem"
-  h2 Plugins
-  ul.submenu
-    - index.pages_tagged("plugin").each do |e|
+.docsbar
+  div class="accordionItem"
+    h2 Getting Started
+    ul.submenu
       li
-        a(href="#{e.path}")= e.heading
-div class="accordionItem"
-  h2 Cool Stuff
-  ul.submenu
-    li
-      a href="link" Making a Simple Plugin
-    li
-      a href="link" Watermark Images Based on Folder or Display Size
-    li
-      a href="link" Generate Thumbnails and Multiple Sizes to Disk
-    li
-      a href="link" Convert and Resize Images as They Are Uploaded
-    li
-      a href="link" Making Your Own Source File Provider
-    li
-      a href="link" Use jCrop to Create a Cropping UI
-    li
-      a href="link" Responsive, Touch-Friendly Lightboxes
-div class="accordionItem"
-  h2 Help
-  ul.submenu
-    li
-      a href="link" Troubleshooting
-    li
-      a href="link" FAQ
-    li
-      a href="link" Accessing Self-Diagnostics
-    li
-      a href="link" Getting Detailed Error Messages
+        a href="http://imageresizing.net/download" Download
+      li
+        a href="link" Manual Installation
+      li
+        a href="link" Nuget Installation
+
+      li
+        a href="link" Comprehensive Installation Guide
+      li
+        a href="link" Installing a Plugin Manually
+  div class="accordionItem"
+    h2 Reference
+    ul.submenu
+      li
+        a href="link" Full Command Reference
+      li
+        a href="link" Managed API Examples
+      li
+        a href="link" Configuration Reference
+      li
+        a href="link" CMS and Compatibility Reference
+  div class="accordionItem"
+    h2 Plugins
+    ul.submenu
+      - index.pages_tagged("plugin").each do |e|
+        li
+          a(href="#{e.path}")= e.heading
+  div class="accordionItem"
+    h2 Cool Stuff
+    ul.submenu
+      li
+        a href="link" This is where the Extend sidebar stuff will be
+      li
+        a href="link" Making a Simple Plugin
+      li
+        a href="link" Watermark Images Based on Folder or Display Size
+      li
+        a href="link" Generate Thumbnails and Multiple Sizes to Disk
+      li
+        a href="link" Convert and Resize Images as They Are Uploaded
+      li
+        a href="link" Making Your Own Source File Provider
+      li
+        a href="link" Use jCrop to Create a Cropping UI
+      li
+        a href="link" Responsive, Touch-Friendly Lightboxes
+  div class="accordionItem"
+    h2 Help
+    ul.submenu
+      li
+        a href="link" Troubleshooting
+      li
+        a href="link" FAQ
+      li
+        a href="link" Accessing Self-Diagnostics
+      li
+        a href="link" Getting Detailed Error Messages
+  div class="accordionItem"
+    h2 Release-Related Documentation
+    ul.submenu
+      li
+        a href="link" This is where the releases sidebar will be
+      li
+        a href="link" Release B
+      li
+        a href="link" Release C
+      li
+        a href="link" Release D
+
 
 
 
@@ -106,4 +120,19 @@ javascript:
       for ( var i = 0; i < element.childNodes.length; i++ ) {
         if ( element.childNodes[i].nodeName == tagName ) return element.childNodes[i];
       }
+    }
+
+    if (window.XMLHttpRequest) {
+      window.onscroll = function() {
+        if ($('body').scrollTop() > 150 || $('html').scrollTop() > 150) {
+          var scrollBottom = $(document).height() - $(window).height() - $(window).scrollTop();
+          console.log(scrollBottom);
+          if ($(window).height() > 20 && scrollBottom > 1000) {
+            $('.docsbar').addClass('docsbar-fixed');
+          }
+        }
+        else {
+            $('.docsbar').removeClass('docsbar-fixed');
+        }
+      };
     }
