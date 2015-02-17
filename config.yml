@@ -77,7 +77,7 @@ categories:
     include: /plugins
     page: /plugins
     meta:
-      sidebar: /plugins/sidebar
+      sidebar: /docs/sidebar
 
 #  - tag: licenses
 #    title: Licenses
@@ -91,7 +91,7 @@ categories:
     meta:
       layout: release
       libs: plusone
-      sidebar: /releases/sidebar
+      sidebar: /docs/sidebar
 
 
 
