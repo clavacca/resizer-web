@@ -2,99 +2,78 @@ layout: false
 Flags: hidden
 
 
-
-link rel="stylesheet" href="/css/less/jquery.tocify.css"
-
+h2#test Test
 div#toc
   .tocify
-    .tocify-header
-      h2 Getting Started
+    h2.tocify-header Getting Started
     ul
-      .tocify-subheader
-        li
-          a href="http://imageresizing.net/download" Download
-      .tocify-subheader
-        li
-          a href="link" Manual Installation
-      .tocify-subheader
-        li
-          a href="link" Nuget Installation
-      .tocify-subheader
-        li
-          a href="link" Comprehensive Installation Guide
-      .tocify-subheader
-        li
-          a href="link" Installing a Plugin Manually
-    div class="tocify-header"
-      h2 Reference
-      ul.submenu
-        li
-          a href="link" Full Command Reference
-        li
-          a href="link" Managed API Examples
-        li
-          a href="link" Configuration Reference
-        li
-          a href="link" CMS and Compatibility Reference
-    div class="tocify-header"
-      h2 Plugins
-      ul.submenu
-        - index.pages_tagged("plugin").each do |e|
-          li
-            a(href="#{e.path}")= e.heading
-    div class="tocify-header"
-      h2 Cool Stuff
-      ul.submenu
-        li
-          a href="link" This is where the Extend sidebar stuff will be
-        li
-          a href="link" Making a Simple Plugin
-        li
-          a href="link" Watermark Images Based on Folder or Display Size
-        li
-          a href="link" Generate Thumbnails and Multiple Sizes to Disk
-        li
-          a href="link" Convert and Resize Images as They Are Uploaded
-        li
-          a href="link" Making Your Own Source File Provider
-        li
-          a href="link" Use jCrop to Create a Cropping UI
-        li
-          a href="link" Responsive, Touch-Friendly Lightboxes
-    div class="tocify-header"
-      h2 Help
-      ul.submenu
-        li
-          a href="link" Troubleshooting
-        li
-          a href="link" FAQ
-        li
-          a href="link" Accessing Self-Diagnostics
-        li
-          a href="link" Getting Detailed Error Messages
-    div class="tocify-header"
-      h2 Release-Related Documentation
-      ul.submenu
-        li
-          a href="link" This is where the releases sidebar will be
-        li
-          a href="link" Release B
-        li
-          a href="link" Release C
-        li
-          a href="link" Release D
-
-
-
-link rel="stylesheet" href="/js/jquery.tocify.min.js"
-javascript:
-  window.onload = init;
-    function init() {
-        $("#toc").tocify();
-    });
-
-
-
-
-
+      li.tocify-subheader
+        a href="http://imageresizing.net/download" Download
+      li.tocify-subheader
+        a href="#install_plugin" Manual Installation
+      li.tocify-subheader
+        a href="#installation" Nuget Installation
+      li.tocify-subheader
+        a href="/docs/install" Comprehensive Installation Guide
+      li.tocify-subheader
+        a href="#install_plugin" Installing a Plugin Manually
+    h2.tocify-header Reference
+    ul
+      li.tocify-subheader
+        a href="#full_command" Full Command Reference
+      li.tocify-subheader
+        a href="#managed_api" Managed API Examples
+      li.tocify-subheader
+        a href="#config_reference" Configuration Reference
+      li.tocify-subheader
+        a href="/docs/workswith" CMS and Compatibility Reference
+    h2.tocify-header Plugins
+    ul
+      li.tocify-subheader
+        a href="#plugins_list" Summary of all plugins.
+      - index.pages_tagged("plugin").each do |e|
+        li.tocify-subheader
+          a(href="#{e.path}")= e.heading
+    h2.tocify-header Cool Stuff
+    ul
+      li.tocify-subheader
+        a href="/docs/community" Community Plugins, Articles, & Feedback
+      li.tocify-subheader 
+        a href="/docs/extend/basics" Making a simple plugin
+      li.tocify-subheader
+        a href="/docs/extend/virtualimageprovider" Making your own source file provider
+      li.tocify-subheader
+        a href="http://nathanaeljones.com/573/combining-jcrop-and-server-side-image-resizing/" Use jCrop to create a cropping UI in 11 lines
+      li.tocify-subheader
+        a href="#watermark" Watermark images based on folder name or display size
+      /Duplicate
+      li.tocify-subheader
+        a href="#resize_upload" Convert and resize images as they are uploaded
+      /Duplicate
+      li.tocify-subheader
+        a href="#thumbnails" Generate thumbnails and multiple sizes to disk
+      /Duplicate
+      li.tocify-subheader
+        a href="/blog/2013/swipebox" Responsive, Touch-Friendly Lightboxes
+    h2.tocify-header Help
+    ul
+      li.tocify-subheader
+        a href="/docs/troubleshoot" Troubleshooting
+      li.tocify-subheader
+        a href="/docs/faq" FAQ
+      li.tocify-subheader
+        a href="#self_diagnostics" Accessing Self-Diagnostics
+        /Duplicate
+      li.tocify-subheader
+        a href="#error_messages" Getting Detailed Error Messages
+        /Duplicate
+      li.tocify-subheader
+        a href="http://documentation.imageresizing.net/doxygen/namespaces.html" Full generated documentation for the core and all plugins, with graphs
+      li.tocify-subheader
+        a href="http://documentation.imageresizing.net/docu/" Simple generated documentation for the ImageResizer core
+    h2.tocify-header Release Documentation
+    ul.submenu
+      - releases.each do |e|
+        li.tocify-subheader
+          a(href="#{e.path}")= e.heading
 
