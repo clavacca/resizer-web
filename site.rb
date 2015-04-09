@@ -96,7 +96,7 @@ class Site < Hardwired::Bootstrap
 
 
       def optimize_js(options, &block)
-        Hardwired::JsOptimize.filter_includes(options,block.call)
+        dev? ? block.call : Hardwired::JsOptimize.filter_includes(options,block.call)
       end 
 
 
