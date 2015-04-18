@@ -9,6 +9,22 @@ Layout: layout
         .g-plusone
     - if page.meta.warning
       .alert = page.meta.warning
+    - @versions = page.version_pairs_friendly
+    - STDERR << @versions
+    - STDERR << page.meta.versions
+    - if @versions.length > 1 || @versions[0][:id] != "all"
+      div.version_box
+        | Versions of this page: 
+        ul.versions
+          - @versions.each do |v|
+            li class=(v[:active] ? "active" : "")
+              |   
+              - if v[:active]
+                = v[:title]
+              - else
+                a href=(v[:path])
+                  = v[:title]
+              |   
     /- if !s && page.path.start_with?("/docs")
       /.sub_nav_bar
         /ul.category_headers

@@ -2,7 +2,20 @@
 module Hardwired
   class Template
 
+    def version_pairs_friendly
+      @@version_friendly_names ||= {"all" => "All versions", "/docs/v3/" => "v3.X", "/docs/v4/" => "v4.X", "/docs/latest/" => "Development version"}
+      version_pairs.map{|v| v.merge({title:  @@version_friendly_names[v[:id]]})}
+    end
+    def version_pairs
+      versions = (meta.versions || []).map{|b| "/" + b.gsub(/\A\//,"").gsub(/\/\Z/,"") + "/"}
+      current_version = versions.select{|b|path.start_with?(b)} .first
+      
+      return [{id: "all", path: path, active: true}] if current_version.nil?
+    
+      rel_path = path[current_version.length ..-1]
 
+      versions.map{|v| {id: v, path: v + rel_path, active: v == current_version}}
+    end
 
     def after_load
       #Evaluate all categories, assign meta.sidebar and meta.primary_category
